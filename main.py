@@ -17,6 +17,12 @@ def generate(prompt: str):
     except Exception as e:
         raise typer.Exit(1)
 
+@app.command()
+def serve():
+    """Start the web server"""
+    import uvicorn
+    from api.main import app as api_app
+    uvicorn.run(api_app, host="0.0.0.0", port=8000)
 
 if __name__ == "__main__":
     app()

@@ -27,7 +27,7 @@ class LeadGenOrchestrator:
         try:
             self.llm_config = get_llm_config()
         except ValueError as e:
-            self.console.print(f"[red]❌ Configuration Error: {e}[/red]")
+            self.console.print(f"[red]Configuration Error: {e}[/red]")
             raise
         
         # Create agent instances
@@ -50,7 +50,7 @@ class LeadGenOrchestrator:
         """Process messages to extract leads and emails"""
         leads, emails = None, None
         
-        self.console.print("\n[blue]📋 Processing agent outputs...[/blue]")
+        self.console.print("\n[blue]Processing agent outputs...[/blue]")
         
         for msg in reversed(messages):
             if msg.get("name") == "LeadLogger" and leads is None:
@@ -65,7 +65,7 @@ class LeadGenOrchestrator:
                         self.console.print(f"[yellow]⚠ Invalid lead structure from LeadLogger[/yellow]")
                         leads = None
                 except Exception as e:
-                    self.console.print(f"[red]❌ Lead parsing failed: {e}[/red]")
+                    self.console.print(f"[red]Lead parsing failed: {e}[/red]")
             
             if msg.get("name") == "EmailAgent" and emails is None:
                 try:
@@ -80,7 +80,7 @@ class LeadGenOrchestrator:
                         self.console.print(f"[dim]Raw content: {content[:200]}...[/dim]")
                         emails = None
                 except Exception as e:
-                    self.console.print(f"[red]❌ Email parsing failed: {e}[/red]")
+                    self.console.print(f"[red]Email parsing failed: {e}[/red]")
         
         return leads, emails
     
@@ -130,5 +130,5 @@ class LeadGenOrchestrator:
                 self.console.print(f"[green]✔ Process completed successfully![/green]")
                 
         except Exception as e:
-            self.console.print(f"[red]❌ Unexpected error: {e}[/red]")
+            self.console.print(f"[red]Unexpected error: {e}[/red]")
             raise

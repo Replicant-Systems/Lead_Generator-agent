@@ -1,0 +1,25 @@
+version: '3.13'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - USE_MOCK_DATA=true
+    volumes:
+      - .:/app
+    # No need to override the command — it uses `main.py serve`
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    environment:
+      - REACT_APP_API_URL=http://api:8000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules

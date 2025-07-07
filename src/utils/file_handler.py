@@ -11,10 +11,10 @@ def save_leads_to_excel(leads: List[Dict[str, Any]], filename: str = "lead_track
     try:
         df = pd.DataFrame(leads)
         df.to_excel(filename, index=False)
-        console.print(f"[cyan]📁 Saved leads to [bold]{filename}[/bold][/cyan]")
+        console.print(f"[cyan]Saved leads to [bold]{filename}[/bold][/cyan]")
         return True
     except Exception as e:
-        console.print(f"[red]❌ Failed to save Excel file: {e}[/red]")
+        console.print(f"[red]Failed to save Excel file: {e}[/red]")
         return False
 
 
@@ -23,8 +23,8 @@ def save_emails_to_json(emails: List[Dict[str, Any]], filename: str = "emails.js
     try:
         with open(filename, "w", encoding='utf-8') as f:
             json.dump(emails, f, indent=2, ensure_ascii=False)
-        console.print(f"[cyan]📁 Saved emails to [bold]{filename}[/bold][/cyan]")
+        console.print(f"[cyan]Saved emails to [bold]{filename}[/bold][/cyan]")
         return True
     except Exception as e:
-        console.print(f"[red]❌ Failed to save emails file: {e}[/red]")
+        console.print(f"[red]Failed to save emails file: {e}[/red]")
         return False

@@ -1,0 +1,11 @@
+autogen
+python-dotenv
+rich
+pandas
+openpyxl
+typer
+ag2[openai]
+fastapi
+uvicorn
+pydantic
+python-multipart
